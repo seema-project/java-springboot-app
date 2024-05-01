@@ -79,7 +79,7 @@ pipeline {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("meportal8.jfrog.io/docker-repo-docker/myapp:1.0")
+                    app = docker.build("meportal.jfrog.io/docker-repo-docker/myapp:1.0")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
@@ -89,7 +89,7 @@ pipeline {
             steps {
                 script {
                         echo '---------- Docker Publish Started --------'  
-                        docker.withRegistry("https://meportal8.jfrog.io", 'jfrog-cred'){
+                        docker.withRegistry("https://meportal.jfrog.io", 'jfrog-cred'){
                         app.push()
                         echo '------------ Docker Publish Ended ---------'  
                     }    
