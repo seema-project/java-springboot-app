@@ -60,7 +60,7 @@ pipeline {
                         "files": [
                             {
                                 "pattern": "staging/(*)",
-                                "target": "release-local-artifacts/{1}",
+                                "target": "jfrog-repo-key/{1}",
                                 "flat": "false",
                                 "props" : "${properties}",
                                 "exclusions": [ "*.sha1", "*.md5"]
