@@ -54,7 +54,7 @@ pipeline {
             steps {
                 script {
                     echo '------------- Artifact Publish Started ------------'
-                    def server = Artifactory.newServer url:"https://meportal8.jfrog.io/artifactory" ,  credentialsId:"jfrog-cred"
+                    def server = Artifactory.newServer url:"https://meportal8.jfrog.io/artifactory" ,  credentialsId:"seema-jfrog"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                     def uploadSpec = """{
                         "files": [
@@ -79,7 +79,7 @@ pipeline {
             steps {
                 script {
                     echo '-------------- Docker Build Started -------------'
-                    app = docker.build("meportal8.jfrog.io/docker-repo-docker-local/myapp:1.0")
+                    app = docker.build("meportal8.jfrog.io/docker-repos-docker-local/myapp:1.0")
                     echo '-------------- Docker Build Ended -------------'
                 }
             }
@@ -89,7 +89,7 @@ pipeline {
             steps {
                 script {
                         echo '---------- Docker Publish Started --------'  
-                        docker.withRegistry("https://meportal8.jfrog.io", 'jfrog-cred'){
+                        docker.withRegistry("https://meportal8.jfrog.io", 'seema-jfrog'){
                         app.push()
                         echo '------------ Docker Publish Ended ---------'  
                     }    
@@ -99,4 +99,3 @@ pipeline {
 
     }
 }
-
